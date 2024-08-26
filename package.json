@@ -1,0 +1,23 @@
+{
+  "name": "my-rn-minimal-setup",
+  "version": "1.0.0",
+  "description": "React Native minimal setup by https://www.github.com/YadBro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YadBro/my-rn-minimal-setup.git"
+  },
+  "author": "YadBro",
+  "license": "MIT",
+  "files": [
+    "template",
+    "template.config.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/YadBro/my-rn-minimal-setup/issues"
+  },
+  "homepage": "https://github.com/YadBro/my-rn-minimal-setup#readme"
+}
