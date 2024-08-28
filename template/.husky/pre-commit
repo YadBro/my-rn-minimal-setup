@@ -1,1 +1,2 @@
-yarn
+yarnnpx lint-staged
+npx lint-staged
