@@ -1,11 +1,21 @@
 import React from 'react'
 
-import { Text, View } from 'react-native'
+import { Button, Text, View } from 'react-native'
 
-export default function HomeScreen(): React.JSX.Element {
+import { useCounter } from 'src/hooks/useCounter.hook'
+
+import type { RootStackParamList } from 'src/routes/RootNavigation.route'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack'
+
+export type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>
+
+export default function HomeScreen(_: HomeScreenProps): React.JSX.Element {
+  const { data, handler } = useCounter({ initialValue: 0 })
+
   return (
     <View>
-      <Text>Hello World</Text>
+      <Text>{data.count}</Text>
+      <Button title="Increment" onPress={handler.onIncrementHandler} />
     </View>
   )
 }

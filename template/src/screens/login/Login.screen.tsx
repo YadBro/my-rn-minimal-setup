@@ -6,7 +6,12 @@ import BaseError from '@components/error/BaseError.component'
 import { Controller } from 'react-hook-form'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 
-export default function LoginScreen(): React.JSX.Element {
+import type { NativeStackScreenProps } from '@react-navigation/native-stack'
+import type { RootStackParamList } from 'src/routes/RootNavigation.route'
+
+export type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>
+
+export default function LoginScreen(_: LoginScreenProps): React.JSX.Element {
   const { data: { control, formState }, handler } = useLogin()
 
   return (
@@ -20,6 +25,7 @@ export default function LoginScreen(): React.JSX.Element {
             onChangeText={onChange}
             value={value}
             style={styles.input}
+            focusable
           />
         )}
       />

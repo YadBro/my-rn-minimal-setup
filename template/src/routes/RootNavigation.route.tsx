@@ -6,11 +6,14 @@ import { NavigationContainer, type NavigationProp } from '@react-navigation/nati
 import HomeScreen from '@screens/Home.screen'
 import LoginScreen from '@screens/login/Login.screen'
 
-export type ScreenNames = ['Login', 'Home'] // type these manually
-export type RootStackParamList = Record<ScreenNames[number], undefined>;
+export type RootStackParamList = {
+  Home: undefined;
+  Login: undefined;
+};
+
 export type StackNavigation = NavigationProp<RootStackParamList>;
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function RootNavigation() {
   return (
