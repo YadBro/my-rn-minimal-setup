@@ -5,10 +5,11 @@ import {
 } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
+import ReduxProvider from '@components/provider/ReduxProvider.component'
+import RootNavigation from '@routes/RootNavigation.route'
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
-import RootNavigation from '@routes/RootNavigation.route'
 
 
 function App(): React.JSX.Element {
@@ -24,7 +25,9 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <RootNavigation />
+      <ReduxProvider>
+        <RootNavigation />
+      </ReduxProvider>
     </SafeAreaProvider>
   )
 }

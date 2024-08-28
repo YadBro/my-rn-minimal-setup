@@ -11,8 +11,8 @@ import type { RootStackParamList } from 'src/routes/RootNavigation.route'
 
 export type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>
 
-export default function LoginScreen(_: LoginScreenProps): React.JSX.Element {
-  const { data: { control, formState }, handler } = useLogin()
+export default function LoginScreen({ navigation }: LoginScreenProps): React.JSX.Element {
+  const { data: { control, formState }, handler } = useLogin({ navigation })
 
   return (
     <View style={styles.container}>

@@ -14,9 +14,11 @@ module.exports = {
           '@routes': './src/routes',
           '@screens': './src/screens',
           '@store': './src/store',
+          '@types': './src/types',
           '@utils': './src/utils',
         }
       }
-    ]
+    ],
+    ['module:react-native-dotenv']
   ]
 };

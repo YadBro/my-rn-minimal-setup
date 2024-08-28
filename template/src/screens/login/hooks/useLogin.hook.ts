@@ -1,9 +1,10 @@
-import { useNavigation } from '@react-navigation/native'
-import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import type { StackNavigation } from '@routes/RootNavigation.route'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+
+import { type NativeStackNavigationProp } from '@react-navigation/native-stack'
+import type { RootStackParamList } from '@routes/RootNavigation.route'
 
 export type LoginInputs = {
   username: string
@@ -15,7 +16,10 @@ const schema = z.object({
   password: z.string().min(3),
 })
 
-export function useLogin() {
+type useLoginParams = {
+  navigation: NativeStackNavigationProp<RootStackParamList, "Login", undefined>
+}
+export function useLogin(params: useLoginParams) {
   const { handleSubmit, control, formState, reset } = useForm<LoginInputs>({
     defaultValues: {
       username: '',
@@ -23,11 +27,10 @@ export function useLogin() {
     },
     resolver: zodResolver(schema),
   })
-  const navigation = useNavigation<StackNavigation>()
 
   const onProcessSubmitHandler = (_: LoginInputs) => {
     reset()
-    navigation.navigate('Home')
+    params.navigation.replace('Home')
   }
 
   const onSubmitHandler = handleSubmit(onProcessSubmitHandler)

@@ -1,8 +1,10 @@
 import type { BaseQueryApi, FetchArgs } from '@reduxjs/toolkit/query'
 import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 
+import { API_HOST } from '@env'
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: API_HOST,
 })
 
 const reduxBaseQuery = async (args: string | FetchArgs, api: BaseQueryApi, extraOptions: object) => {

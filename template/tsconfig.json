@@ -12,7 +12,12 @@
       "@routes/*": ["./src/routes/*"],
       "@screens/*": ["./src/screens/*"],
       "@store/*": ["./src/store/*"],
-      "@utils/*": ["./src/utils/*"]
-    }
-  }
+      "@types/*": ["./src/types/*"],
+      "@utils/*": ["./src/utils/*"],
+      "react": [ "./node_modules/@types/react" ]
+    },
+    "typeRoots": ["./types"],
+    "jsx":"react",
+    "strict": true,
+  },
 }

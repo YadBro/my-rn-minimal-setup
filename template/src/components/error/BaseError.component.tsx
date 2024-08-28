@@ -1,7 +1,7 @@
 import React from 'react'
 import { FieldError } from 'react-hook-form'
 
-import { Text, StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
 type BaseErrorProps = {
   error?: FieldError | undefined
