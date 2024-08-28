@@ -20,3 +20,4 @@ package-lock.json
 node_modules
 template/js
 template/yarn.lock
+template/ios/Podfile.lock
