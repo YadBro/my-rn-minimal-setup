@@ -3,5 +3,6 @@ module.exports = {
   extends: '@react-native',
   rules: {
     "semi": "off",
+    "no-unused-vars": "error",
   }
 };
