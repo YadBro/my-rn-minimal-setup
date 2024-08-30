@@ -5,8 +5,12 @@ interface useCounterParams {
   initialValue: number
 }
 
-export function useCounter(params: useCounterParams) {
-  const [count, setCount] = useState(params.initialValue)
+export function useCounter(params?: useCounterParams) {
+  const { initialValue } = params || {
+    initialValue: 0
+  }
+
+  const [count, setCount] = useState(initialValue)
 
   const onIncrementHandler = () => setCount(prevState => prevState + counterDummy.incrementValue)
 

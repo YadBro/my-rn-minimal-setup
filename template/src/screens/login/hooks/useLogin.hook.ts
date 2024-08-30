@@ -2,6 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { authActions } from '@store/slices/auth.slice'
 
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack'
 import type { RootStackParamList } from '@routes/RootNavigation.route'
@@ -20,6 +22,7 @@ type useLoginParams = {
   navigation: NativeStackNavigationProp<RootStackParamList, "Login", undefined>
 }
 export function useLogin(params: useLoginParams) {
+  const dispatch = useDispatch()
   const { handleSubmit, control, formState, reset } = useForm<LoginInputs>({
     defaultValues: {
       username: '',
@@ -30,7 +33,10 @@ export function useLogin(params: useLoginParams) {
 
   const onProcessSubmitHandler = (_: LoginInputs) => {
     reset()
-    params.navigation.replace('Home')
+    dispatch(authActions.setAuth(true))
+    params.navigation.replace('Home', {
+      userId: 1,
+    })
   }
 
   const onSubmitHandler = handleSubmit(onProcessSubmitHandler)

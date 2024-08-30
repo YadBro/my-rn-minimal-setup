@@ -18,3 +18,4 @@ template/android/.gradle
 template/android/.idea
 documentation
 .github
+!template/.gitignore

@@ -9,15 +9,20 @@
       "@config/*": ["./src/config/*"],
       "@data/*": ["./src/data/*"],
       "@hooks/*": ["./src/hooks/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
       "@routes/*": ["./src/routes/*"],
       "@screens/*": ["./src/screens/*"],
       "@store/*": ["./src/store/*"],
+      "@theme/*": ["./src/theme/*"],
       "@types/*": ["./src/types/*"],
       "@utils/*": ["./src/utils/*"],
-      "react": [ "./node_modules/@types/react" ]
+      "react": ["./node_modules/@types/react"]
     },
-    "typeRoots": ["./types"],
+    "typeRoots": [
+        "./src/types"
+    ],
     "jsx":"react",
     "strict": true,
+    "types": [""]
   },
 }

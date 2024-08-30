@@ -1,6 +1,6 @@
 {
   "name": "@yadiganteng32/my-rn-minimal-setup",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "React Native minimal setup by https://www.github.com/YadBro",
   "main": "index.js",
   "scripts": {

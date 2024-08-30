@@ -2,12 +2,19 @@ import React, { useState } from 'react'
 
 import { useCounter } from '@hooks/useCounter.hook'
 import { useAddPostMutation, useGetPostsQuery } from '@store/services/post.service'
+import { useDispatch } from 'react-redux'
+import { useTheme } from '@theme/hooks/useTheme'
+import { themeActions } from '@store/slices/theme.slice'
 
 import { Button, FlatList, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import BaseText from '@components/text/BaseText.component'
+import BaseTheme from '@components/theme/BaseTheme.component'
+import BaseButton from '@components/button/BaseButton'
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 import type { RootStackParamList } from '@routes/RootNavigation.route'
+import { authActions } from 'src/store/slices/auth.slice'
 
 export type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>
 
@@ -19,46 +26,74 @@ const Item = ({title}: ItemProps) => (
   </View>
 );
 
-export default function HomeScreen(_: HomeScreenProps): React.JSX.Element {
-  const { data, handler } = useCounter({ initialValue: 0 })
+export default function HomeScreen({ route: { params }}: HomeScreenProps): React.JSX.Element {
+  const dispatch = useDispatch()
+  const { data: themeData} = useTheme()
+  
+  const { data, handler } = useCounter()
   const [post, setPost] = useState({
     title: '',
     body: 'new body',
-    userId: 1,
+    userId: params?.userId || 1,
   })
   const { data: postsData, isSuccess, isLoading } = useGetPostsQuery('')
   const [AddPost] = useAddPostMutation()
 
   return (
     <SafeAreaView>
-      <Text className='text-center mt-5'>{data.count}</Text>
-      <Button title="Increment" onPress={handler.onIncrementHandler} />
+      <BaseTheme>
+        <BaseText className={`text-center mt-5`}>{data.count}, MODE: {themeData.mode}</BaseText>
+        <Button title="Increment" onPress={handler.onIncrementHandler} />
 
-      <View className='mx-auto mt-8'>
-        <TextInput
-          className='px-4 border-black border-[2px] py-2 rounded-full mb-3'
-          focusable
-          placeholder='Buat Post baru disini'
-          onChangeText={e => setPost(prevState => ({...prevState, title: e}))}
-          value={post.title}
+        <View className='mx-auto mt-8'>
+          <TextInput
+            className='px-4 border-dark-light border-[2px] py-2 rounded-full mb-3'
+            focusable
+            placeholder='Buat Post baru disini'
+            onChangeText={e => setPost(prevState => ({...prevState, title: e}))}
+            value={post.title}
+          />
+          <BaseButton 
+            text='Create Post'
+            onPressHandler={() => AddPost(post)}
+          />
+        </View>
+        <BaseButton 
+          className='mx-auto'
+          text='Light Mode'
+          variant='secondary'
+          onPressHandler={() => dispatch(themeActions.setTheme('light'))}
         />
-        <TouchableOpacity className='bg-green-600 mx-auto py-3 px-3 rounded-md' onPress={() => AddPost(post)}>
-          <Text className='text-white text-1xl'>Create Post</Text>
-        </TouchableOpacity>
-      </View>
+        <BaseButton 
+          className='mx-auto'
+          text='Dark Mode'
+          variant='primary'
+          onPressHandler={() => dispatch(themeActions.setTheme('dark'))}
+        />
 
-      <Text className='text-3xl font-bold my-5 text-center'>List Post</Text>
-      {isLoading
-      ?
-      <Text className='text-center text-lg'>Loading....</Text>
-      : isSuccess
-      ?
-      <FlatList
-        data={postsData}
-        renderItem={({item}) => <Item title={item.title} />}
-        keyExtractor={item => item.id.toString()}
-      />
-      :null}
+        <BaseButton 
+          className='mt-5 mx-auto'
+          text='Logout'
+          variant='primary'
+          onPressHandler={() => dispatch(authActions.setAuth(false))}
+        />
+
+        <BaseText type='Bold' className='text-3xl my-5 text-center'>List Post ada</BaseText>
+
+        {isLoading
+        ?
+          <BaseText type='SemiBold' className={`text-center mt-5`}>
+            Loading...
+          </BaseText>
+        : isSuccess
+        ?
+        <FlatList
+          data={postsData}
+          renderItem={({item}) => <Item title={item.title} />}
+          keyExtractor={item => item.id.toString()}
+        />
+        :null}
+      </BaseTheme>
     </SafeAreaView>
   )
 }

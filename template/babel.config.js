@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ['module:@react-native/babel-preset'],
+  presets: ['module:@react-native/babel-preset', 'nativewind/babel'],
   plugins: [
     [
       'module-resolver',
@@ -11,15 +11,16 @@ module.exports = {
           '@config': './src/config',
           '@data': './src/data',
           '@hooks': './src/hooks',
+          '@interfaces': './src/interfaces',
           '@routes': './src/routes',
           '@screens': './src/screens',
           '@store': './src/store',
+          '@theme': './src/theme',
           '@types': './src/types',
           '@utils': './src/utils',
         }
       }
     ],
     ['module:react-native-dotenv'],
-    ["nativewind/babel"]
-  ]
+  ],
 };

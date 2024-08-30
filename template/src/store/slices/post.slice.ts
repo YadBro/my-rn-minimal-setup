@@ -14,8 +14,8 @@ const initialState: PostInitialState = {
   },
 };
 
-const tasksSlice = createSlice({
-  name: 'todos',
+const postSlice = createSlice({
+  name: 'post',
   initialState,
   reducers: {
     postListPatch(state, action: PayloadAction<Partial<PostInitialState['list']>>) {
@@ -28,6 +28,6 @@ const tasksSlice = createSlice({
   },
 });
 
-export const taskActions = tasksSlice.actions
+export const postActions = postSlice.actions
 
-export default tasksSlice.reducer
+export default postSlice.reducer
