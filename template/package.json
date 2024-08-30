@@ -11,7 +11,8 @@
     "start:prod": "NODE_ENV=production react-native start --reset-cache",
     "test": "jest",
     "prepare": "husky",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "setup:assets": "npx react-native-asset"
   },
   "dependencies": {
     "@hookform/resolvers": "3.9.0",
